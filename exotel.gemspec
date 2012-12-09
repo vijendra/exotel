@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Vijendra Rao']
   s.email       = ['vijendrakarkala@gmail.com']
-  s.homepage    = "http://rubygems.org/gems/exotel"
+  s.homepage    = %q{https://github.com/vijendra/exotel}
   s.summary     = "Wrapper for exotel api"
   s.description = "Exotel api wrapper."
 
