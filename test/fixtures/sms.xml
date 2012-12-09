@@ -1,0 +1,14 @@
+<TwilioResponse>
+    <SMSMessage>
+        <Sid>SM872fb94e3b358913777cdb313f25b46f</Sid>
+        <DateCreated>Sun, 09 Dec 2012 03:48:08</DateCreated>
+        <DateUpdated>Sun, 09 Dec 2012 03:48:10</DateUpdated>
+        <DateSent>Sun, 09 Dec 2012 03:48:10</DateSent>
+        <AccountSid>AC5ea872f6da5a21de157d80997a64bd33</AccountSid>
+        <To>4321</To>
+        <From>1234</From>
+        <Body>Test sms</Body>
+        <Status>sent</Status>
+        <Flags>2</Flags>
+    </SMSMessage>
+</TwilioResponse>
