@@ -4,7 +4,7 @@
   gem install exotel
 
 ======  
-## Usage
+# Usage
     # Configure authentication keys
     Exotel.configure do |c|
 	    c.exotel_sid   = "Your exotel sid"
@@ -12,10 +12,10 @@
     end
  
     #To send SMS
-    sms = Exotel.Sms.new(from: 'FROM_NUMBER', to: 'TO_NUMBER', body: 'MESSAGE BODY")
+    sms = Exotel::Sms.new(from: 'FROM_NUMBER', to: 'TO_NUMBER', body: 'MESSAGE BODY')
     response = sms.send
     response.status 
  
 ======  
-## TODO
- Write Class for handling calls
+# TODO
+Cover exotel call
