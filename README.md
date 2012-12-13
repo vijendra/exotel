@@ -1,6 +1,6 @@
 # exotel - A ruby wrapper for the Exotel API
 ======
-## Installation
+# Installation
   gem install exotel
 
 ======  
@@ -15,6 +15,9 @@
     sms = Exotel::Sms.new(from: 'FROM_NUMBER', to: 'TO_NUMBER', body: 'MESSAGE BODY')
     response = sms.send
     response.status 
+======  
+# Run tests
+  rake test
  
 ======  
 # TODO

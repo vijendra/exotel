@@ -6,7 +6,7 @@ describe Exotel::Sms do
   end
   
   it 'should have the correct base_uri' do
-    Exotel::Sms.base_uri.must_equal "https://twilix.exotel.in/v1/Accounts/#{Exotel.exotel_sid}"
+    Exotel::Sms.base_uri.must_equal "https://twilix.exotel.in/v1/Accounts"
   end
   
   describe '#initialize' do
@@ -21,7 +21,7 @@ describe Exotel::Sms do
     describe 'success' do
       before do
         base_path = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-        stub_request(:post, "https://test_sid:test_token@twilix.exotel.in/v1/Accounts/Sms/send").
+        stub_request(:post, "https://test_sid:test_token@twilix.exotel.in/v1/Accounts/#{Exotel.exotel_sid}/Sms/send").
         with(:body => "From=1234&To=4321&Body=Test%20sms"). 
         to_return(:status => 200, :body => File.new(base_path + '/fixtures/sms.xml'))
       end
@@ -49,7 +49,7 @@ describe Exotel::Sms do
     describe 'autentication failed' do
       before do
         base_path = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-        stub_request(:post, "https://test_sid:test_token@twilix.exotel.in/v1/Accounts/Sms/send").
+        stub_request(:post, "https://test_sid:test_token@twilix.exotel.in/v1/Accounts/#{Exotel.exotel_sid}/Sms/send").
         with(:body => "From=1234&To=4321&Body=Test%20sms"). 
         to_return(:status=>401, :body => 'Authentication is required to view this page.')
       end
