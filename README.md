@@ -1,4 +1,5 @@
 # exotel - A ruby wrapper for the Exotel API
+[![Build Status](https://travis-ci.org/vijendra/exotel.png?branch=master)](https://travis-ci.org/vijendra/exotel)
 ======
 # Installation
   gem install exotel
