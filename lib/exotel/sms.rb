@@ -9,21 +9,21 @@ module Exotel
     end
     
     def send(params={})
-      fields = {From: params[:from], To: params[:to], Body: params[:body]} 
-      options = {body: fields, basic_auth: auth }
+      fields = {:From => params[:from], :To => params[:to], :Body => params[:body]} 
+      options = {:body => fields, :basic_auth => auth }
       response = self.class.post("/#{Exotel.exotel_sid}/Sms/send",  options)
       handle_response(response)
     end
    
     def details(sid)
-      response = self.class.get("/#{Exotel.exotel_sid}/Sms/Messages/#{sid}",  basic_auth: auth)
+      response = self.class.get("/#{Exotel.exotel_sid}/Sms/Messages/#{sid}",  :basic_auth => auth)
       handle_response(response)
     end
     
     protected
     
     def auth
-      {username: Exotel.exotel_sid, password: Exotel.exotel_token}
+      {:username => Exotel.exotel_sid, :password => Exotel.exotel_token}
     end
     
     def handle_response(response)
