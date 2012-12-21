@@ -4,8 +4,10 @@ module Exotel
     attr_accessor :sid, :date_created, :date_updated, :status, :date_sent, :to, :from, :body
     
     def initialize(response)
-      parsed_response = MultiXml.parse(response)
-      sms = parsed_response['TwilioResponse']['SMSMessage']
+      #To handle unexpected parsing from httparty
+      response = MultiXml.parse(response) unless response.is_a?(Hash) 
+      
+      sms = response['TwilioResponse']['SMSMessage']
       @sid          = sms['Sid']
       @date_created = sms['DateCreated']
       @date_updated = sms['DateUpdated']

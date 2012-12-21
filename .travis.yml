@@ -1,0 +1,7 @@
+language: ruby
+script: "rake test"
+rvm:
+  - 1.9.2
+  - 1.9.3
+  - ruby-head
+  - ree
