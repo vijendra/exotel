@@ -10,6 +10,8 @@ module Exotel
   class AuthenticationError < StandardError;  end
 
   class UnexpectedError < StandardError;  end
+
+  class ParamsError < StandardError;  end
 end
 
 

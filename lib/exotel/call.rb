@@ -1,30 +1,33 @@
 # -*- encoding: utf-8 -*-
 require 'httparty'
 module Exotel
-  class Sms
+  class Call
     include HTTParty
     base_uri "https://twilix.exotel.in/v1/Accounts"
     
     def initialize
     end
     
-    def send(params={})
-      if !params.key? :To or !params.key? :Body
+    def make(params={})
+      if !params.key? :From or !params.key? :To or !params.key? :CallerId or !params.key? :CallType
         raise Exotel::ParamsError, "Missing required parameter"
       end
-      if !params.key? :From
-        params[:From] = ''
+      if !['trans', 'promo'].include? params[:CallType]
+        raise Exotel::ParamsError, "CallType is not valid"
       end
-      options = {:body => params, :basic_auth => auth }
-      response = self.class.post("/#{Exotel.exotel_sid}/Sms/send",  options)
+      # make the params sensible
+      swap = params[:From]
+      params[:From] = params[:To]
+      params[:To] = swap
+      if params[:FlowId]
+        params[:Url] = "http://my.exotel.in/exoml/start/#{params[:FlowId]}"
+        params[:FlowId] = nil
+      end
+      options = { :body => params, :basic_auth => auth }
+      response = self.class.post("/#{Exotel.exotel_sid}/Call/connect",  options)
       handle_response(response)
     end
    
-    def details(sid)
-      response = self.class.get("/#{Exotel.exotel_sid}/Sms/Messages/#{sid}",  :basic_auth => auth)
-      handle_response(response)
-    end
-    
     protected
     
     def auth
