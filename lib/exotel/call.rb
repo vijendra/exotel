@@ -15,16 +15,18 @@ module Exotel
       if !['trans', 'promo'].include? params[:CallType]
         raise Exotel::ParamsError, "CallType is not valid"
       end
+
       # make the params sensible
       swap = params[:From]
       params[:From] = params[:To]
       params[:To] = swap
+      
       if params[:FlowId]
         params[:Url] = "http://my.exotel.in/exoml/start/#{params[:FlowId]}"
         params[:FlowId] = nil
       end
-      options = { :body => params, :basic_auth => auth }
-      response = self.class.post("/#{Exotel.exotel_sid}/Calls/connect",  options)
+      
+      response = self.class.post("/#{Exotel.exotel_sid}/Calls/connect",  { :body => params, :basic_auth => auth })
       handle_response(response)
     end
    

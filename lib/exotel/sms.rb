@@ -15,8 +15,13 @@ module Exotel
       if !params.key? :From
         params[:From] = ''
       end
-      options = {:body => params, :basic_auth => auth }
-      response = self.class.post("/#{Exotel.exotel_sid}/Sms/send",  options)
+
+      # for backward compatibility
+      params.each do |k,v|
+        params[k.gsub(/^([a-z])/) {$1.capitalize}] = v
+      end
+      
+      response = self.class.post("/#{Exotel.exotel_sid}/Sms/send",  {:body => params, :basic_auth => auth })
       handle_response(response)
     end
    
