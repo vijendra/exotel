@@ -24,7 +24,7 @@ module Exotel
         params[:FlowId] = nil
       end
       options = { :body => params, :basic_auth => auth }
-      response = self.class.post("/#{Exotel.exotel_sid}/Call/connect",  options)
+      response = self.class.post("/#{Exotel.exotel_sid}/Calls/connect",  options)
       handle_response(response)
     end
    
