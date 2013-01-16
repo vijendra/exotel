@@ -17,8 +17,10 @@ module Exotel
       end
 
       # for backward compatibility
-      params.each do |k,v|
-        params[k.gsub(/^([a-z])/) {$1.capitalize}] = v
+      params.keys.each do |k|
+        new_key = k.to_s.gsub(/^([a-z])/) {$1.capitalize}
+        params[new_key] = params[k]
+        params[k] = nil
       end
       
       response = self.class.post("/#{Exotel.exotel_sid}/Sms/send",  {:body => params, :basic_auth => auth })
