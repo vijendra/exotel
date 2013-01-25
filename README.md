@@ -15,8 +15,14 @@
   **To send SMS**
   
     sms = Exotel::Sms.new
-    response = sms.send(from: 'FROM_NUMBER', to: 'TO_NUMBER', body: 'MESSAGE BODY')
+    response = sms.send(From: 'FROM_NUMBER', To: 'TO_NUMBER', Body: 'MESSAGE BODY')
     sms_id = response.sid #Used to find the delivery status of the message in future.
+
+  **To make a Call**
+  
+    call = Exotel::Call.new
+    response = call.make(To: 'Customer's number', From: 'your exotel number', CallerId: 'Virtual number', FlowId: 'flow id to connect user to')
+    sid = response.sid # if you want to make the flow dynamic, use this
  
   **To get the details/check the delivery status**
   

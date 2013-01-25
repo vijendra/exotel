@@ -7,15 +7,20 @@ module Exotel
       #To handle unexpected parsing from httparty
       response = MultiXml.parse(response) unless response.is_a?(Hash) 
       
-      sms = response['TwilioResponse']['SMSMessage']
-      @sid          = sms['Sid']
-      @date_created = sms['DateCreated']
-      @date_updated = sms['DateUpdated']
-      @status       = sms['Status']
-      @date_sent    = sms['DateSent']
-      @to           = sms['To']
-      @from         = sms['From']
-      @body         = sms['Body']
+      params = response['TwilioResponse']
+
+      (params['Call'] or params['SMSMessage']).each do |k, v|
+        instance_variable_set "@#{underscore k}", v
+      end
+
+    end
+
+    def underscore string
+      string.gsub(/::/, '/').
+      gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+      gsub(/([a-z\d])([A-Z])/,'\1_\2').
+      tr("-", "_").
+      downcase
     end
   end
 end
