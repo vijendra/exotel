@@ -15,7 +15,7 @@
   **To send SMS**
   
     sms = Exotel::Sms.new
-    response = sms.send(From: 'FROM_NUMBER', To: 'TO_NUMBER', Body: 'MESSAGE BODY')
+    response = sms.send(from: 'FROM_NUMBER', to: 'TO_NUMBER', body: 'MESSAGE BODY')
     sms_id = response.sid #Used to find the delivery status of the message in future.
 
   **To make a Call**
@@ -34,4 +34,4 @@
   rake test
 
 ## TODO
-Wrappers for exotel call apis
+Tests for exotel call api wrappers
