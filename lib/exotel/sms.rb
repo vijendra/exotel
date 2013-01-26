@@ -9,22 +9,11 @@ module Exotel
     end
     
     def send(params={})
-      if !params.key? :To or !params.key? :Body
-        raise Exotel::ParamsError, "Missing required parameter"
-      end
-      if !params.key? :From
-        params[:From] = ''
-      end
-
-      # for backward compatibility
-      params.keys.each do |k|
-        new_key = k.to_s.gsub(/^([a-z])/) {$1.capitalize}
-        params[new_key] = params[k]
-        params[k] = nil
-      end
-      
-      response = self.class.post("/#{Exotel.exotel_sid}/Sms/send",  {:body => params, :basic_auth => auth })
-      handle_response(response)
+      if valid?(params)
+        params = transfrom_params(params)
+        response = self.class.post("/#{Exotel.exotel_sid}/Sms/send",  {:body => params, :basic_auth => auth })
+        handle_response(response)
+      end  
     end
    
     def details(sid)
@@ -33,6 +22,19 @@ module Exotel
     end
     
     protected
+    
+    def valid?(params)
+      unless [:from, :to, :body].all?{|key| params.keys.include?(key)}
+        raise Exotel::ParamsError, "Missing required parameter: Please make sure you have passed 'to', 'from' and 'sms'" 
+      else
+        true  
+      end 
+    end
+    
+    def transfrom_params(params)
+      #Keys are converted to camelcase
+      params.inject({}){ |h, (key, value)| h[key.capitalize.to_sym] = value; h }
+    end
     
     def auth
       {:username => Exotel.exotel_sid, :password => Exotel.exotel_token}

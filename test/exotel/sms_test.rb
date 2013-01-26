@@ -55,10 +55,30 @@ describe Exotel::Sms do
         to_return(:status => 401, :body => 'Authentication is required to view this page.')
       end
       
-      it "should return the response object" do
+      it "should raise the authentication error" do
         sms = Exotel::Sms.new
         proc{sms.send(:from => '1234', :to => '4321', :body => 'Test sms')}.
             must_raise Exotel::AuthenticationError
+      end
+    end
+    
+    describe 'missing parameters' do
+      it "should raise the missing params error when :from is missing" do
+        sms = Exotel::Sms.new
+        proc{sms.send(:to => '4321', :body => 'Test sms')}.
+            must_raise Exotel::ParamsError
+      end
+      
+      it "should raise the missing params error when :to is missing" do
+        sms = Exotel::Sms.new
+        proc{sms.send(:from => '1234', :body => 'Test sms')}.
+            must_raise Exotel::ParamsError
+      end
+      
+      it "should raise the missing params error when :body is missing" do
+        sms = Exotel::Sms.new
+        proc{sms.send(:to => '4321', :from => '1234')}.
+            must_raise Exotel::ParamsError
       end
     end
   end
@@ -98,7 +118,7 @@ describe Exotel::Sms do
         to_return(:status => 401, :body => 'Authentication is required to view this page.')
       end
       
-      it "should return the response object" do
+      it "should raise the authentication error" do
         sms = Exotel::Sms.new
         proc{sms.details('SM872fb94e3b358913777cdb313f25b46f')}.
             must_raise Exotel::AuthenticationError
