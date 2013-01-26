@@ -33,7 +33,7 @@ module Exotel
     
     def transfrom_params(params)
       #Keys are converted to camelcase
-      params.inject({}){ |h, (key, value)| h[key.capitalize.to_sym] = value; h }
+      params.inject({}){ |h, (key, value)| h[key.to_s.capitalize.to_sym] = value; h }
     end
     
     def auth
