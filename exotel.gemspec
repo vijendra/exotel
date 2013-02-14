@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "bundler", ">= 1.0.0"
   s.add_development_dependency "webmock"
+  s.add_development_dependency "mocha"
   if RUBY_VERSION == "1.8.7"
     s.add_development_dependency 'minitest', '3.2.0'
   end

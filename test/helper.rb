@@ -1,6 +1,7 @@
 require 'minitest/spec'
 require 'minitest/autorun'
 require 'webmock/minitest'
+require "mocha/setup"
 require 'exotel'
 
 Exotel.configure do |c|

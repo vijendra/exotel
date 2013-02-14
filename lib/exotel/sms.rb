@@ -5,7 +5,10 @@ module Exotel
     include HTTParty
     base_uri "https://twilix.exotel.in/v1/Accounts"
     
-    def initialize
+    def initialize; end
+    
+    def self.send(params={})
+      self.new.send(params)
     end
     
     def send(params={})
@@ -25,7 +28,7 @@ module Exotel
     
     def valid?(params)
       unless [:from, :to, :body].all?{|key| params.keys.include?(key)}
-        raise Exotel::ParamsError, "Missing required parameter: Please make sure you have passed 'to', 'from' and 'sms'" 
+        raise Exotel::ParamsError, "Missing one or many required parameters." 
       else
         true  
       end 
