@@ -47,8 +47,8 @@
     duration = response.duration
   
   **DND numbers**  
+ 
    response.status = 'DND'
-   
    response.message will be some thing like 'Call to ****** cannot be made because of TRAI NDNC regulations'
    
 ## Run tests
