@@ -11,6 +11,10 @@ module Exotel
       self.new.send(params)
     end
     
+    def self.details(params={})
+      self.new.details(params)
+    end
+    
     def send(params={})
       if valid?(params)
         params = transfrom_params(params)

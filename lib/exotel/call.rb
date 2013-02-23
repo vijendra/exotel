@@ -16,6 +16,10 @@ module Exotel
       self.new.connect_to_agent(params)
     end
     
+    def self.details(params={})
+      self.new.details(params)
+    end
+    
     def connect_to_flow(params={})
       if valid?(params, {:type => 'flow'})
         params = transfrom_params(params, {:type => 'flow'})
@@ -29,7 +33,11 @@ module Exotel
         make_call(params)
       end
     end
- 
+   
+    def details(sid)
+      response = self.class.get("/#{Exotel.exotel_sid}/Calls/#{sid}",  :basic_auth => auth)
+      handle_response(response)
+    end
     
     protected
     

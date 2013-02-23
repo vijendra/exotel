@@ -1,0 +1,6 @@
+<TwilioResponse>
+ <RestException>
+  <Status>403</Status>
+  <Message>Call to [01234] cannot be made because of TRAI NDNC regulations</Message>
+ </RestException>
+</TwilioResponse>
