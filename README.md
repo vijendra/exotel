@@ -33,7 +33,7 @@
   
   **To connect a customer to an existing App/Flow**
   
-    response = Exotel::Call.connect_to_agent(:to => 'Your Exotel Virtual Number', :from => 'The customer phone number that will be called', :caller_id => 'Your Exotel Number', :call_type => 'trans or promo'. :flow_id => 'App/Flow id to be connected')
+    response = Exotel::Call.connect_to_flow(:to => 'Your Exotel Virtual Number', :from => 'The customer phone number that will be called', :caller_id => 'Your Exotel Number', :call_type => 'trans or promo'. :flow_id => 'App/Flow id to be connected')
     call_id = response.sid #sid is used to find the details of the call. Ex: Total price of teh call. 
     
     For complete details about the parameters refer exotel api doc.
